@@ -21,5 +21,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
   const g = new Game();
   g.draw(ctx);
+  setTimeout(() => {
+    g.moveObjects();
+    g.draw(ctx);
+  }, 1000);
 });
 
