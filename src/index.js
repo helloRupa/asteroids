@@ -1,8 +1,6 @@
 const MovingObject = require('../src/moving_object');
 const Asteroid = require('../src/asteroid');
-
-window.MovingObject = MovingObject;
-window.Asteroid = Asteroid;
+const Game = require('../src/game');
 
 document.addEventListener('DOMContentLoaded', function(){
   const canvas = document.getElementById('game-canvas');
@@ -21,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
     m.draw(ctx);
   }, 1000);
 
-  const a = new Asteroid([100, 100]);
-  a.draw(ctx);
+  const g = new Game();
+  g.draw(ctx);
 });
 
