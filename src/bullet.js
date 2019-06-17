@@ -3,12 +3,12 @@ const MovingObject = require('./moving_object');
 const Asteroid = require('./asteroid');
 const Ship = require('./ship');
 
-function Bullet(pos, game, vel, dir) {
+function Bullet(pos, game, vel) {
   MovingObject.call(this, { 
     pos: pos, 
     color: Bullet.color, 
     radius: Bullet.radius, 
-    vel: Bullet.setVelocity(vel, dir),
+    vel: Bullet.setVelocity(vel),
     game: game
   });
 }
@@ -27,20 +27,14 @@ Bullet.prototype.collidedWith = function (otherObject) {
   }
 };
 
-// use a combo of ship's velocity and key pressed to set velocity
-Bullet.setVelocity = function (vel, dir) {
+Bullet.setVelocity = function (vel) {
   let [x, y] = vel;
-  const [dx, dy] = dir;
 
-  if (dx !== 0) {
-    if (Math.sign(x) !== Math.sign(dx)) x *= -1;
-    if (Math.abs(x) < 5) x = dx * 5;
-  } else {
-    if (Math.sign(y) !== Math.sign(dy)) y *= -1;
-    if (Math.abs(y) < 5) y = dy * 5;
+  if (Math.abs(x) === 0 && Math.abs(y) === 0) {
+    x = 5;
   }
 
-  return [x, y].map(val => Math.floor(val * 1.5));
+  return [x, y].map(val => Math.floor(val * 3));
 };
 
 module.exports = Bullet;

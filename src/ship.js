@@ -45,8 +45,8 @@ Ship.prototype.move = function (delta) {
   this.pos = this.game.wrap(this.pos);
 };
 
-Ship.prototype.fireBullet = function (dir) {
-  this.game.bullets.push(new Bullet(this.pos, this.game, this.vel, dir));
+Ship.prototype.fireBullet = function () {
+  this.game.bullets.push(new Bullet(this.pos, this.game, this.vel));
 };
 
 module.exports = Ship;
