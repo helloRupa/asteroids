@@ -17,6 +17,11 @@ Asteroid.radius = 10;
 
 Util.inherits(Asteroid, MovingObject);
 
+Asteroid.prototype.move = function () {
+  MovingObject.prototype.move.call(this);
+  this.pos = this.game.wrap(this.pos);
+};
+
 Asteroid.prototype.collidedWith = function (otherObject) {
   if (otherObject instanceof Ship) {
     otherObject.relocate();

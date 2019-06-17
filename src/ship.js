@@ -40,6 +40,11 @@ Ship.prototype.power = function (impulse) {
   this.vel = [x, y];
 };
 
+Ship.prototype.move = function () {
+  MovingObject.prototype.move.call(this);
+  this.pos = this.game.wrap(this.pos);
+};
+
 Ship.prototype.fireBullet = function (dir) {
   this.game.bullets.push(new Bullet(this.pos, this.game, this.vel, dir));
 };

@@ -43,9 +43,4 @@ Bullet.setVelocity = function (vel, dir) {
   return [x, y].map(val => Math.floor(val * 1.5));
 };
 
-// override MovingObject's to avoid wrapping
-Bullet.prototype.move = function () {
-  this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
-};
-
 module.exports = Bullet;
