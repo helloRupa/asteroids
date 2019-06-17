@@ -4,6 +4,7 @@ function MovingObject(options) {
   this.radius = options.radius;
   this.color = options.color;
   this.game = options.game;
+  this.cleanup = false;
 }
 
 MovingObject.prototype.draw = function(ctx) {

@@ -1,10 +1,12 @@
 const Asteroid = require('./asteroid');
 const Ship = require('./ship');
+const Bullet = require('./bullet');
 
 function Game() {
   this.asteroids = [];
   this.addAsteroids();
   this.ship = new Ship(this.randomPosition(), this);
+  this.bullets = [];
 }
 
 Game.DIM_X = 900;
@@ -52,19 +54,23 @@ Game.prototype.wrap = function (pos) {
 };
 
 Game.prototype.checkCollisions = function () {
-  const allObjects = this.allObjects();
+  const objects = this.allObjects();
 
-  allObjects.forEach((object, idx) => {
-    for (let i = idx + 1; i < allObjects.length; i++) {
-      if (object.isCollidedWith(allObjects[i])) {
-        object.collidedWith(allObjects[i]);
+  objects.forEach((object, idx) => {
+    for (let i = idx + 1; i < objects.length; i++) {
+      if (object.isCollidedWith(objects[i])) {
+        object.collidedWith(objects[i]);
+        objects[i].collidedWith(object);
       }
     }
   });
+
+  this.remove();
 };
 
 Game.prototype.remove = function (/*asteroid*/) {
-  return this.asteroids.filter(asteroid => !asteroid.cleanup)
+  this.asteroids = this.asteroids.filter(asteroid => !asteroid.cleanup);
+  this.bullets = this.bullets.filter(bullet => !bullet.cleanup);
   // this.asteroids.splice(this.asteroids.indexOf(asteroid), 1);
 };
 
@@ -74,7 +80,7 @@ Game.prototype.step = function () {
 };
 
 Game.prototype.allObjects = function () {
-  return [...this.asteroids].concat(this.ship);
+  return [...this.asteroids].concat(this.ship).concat([...this.bullets]);
 };
 
 module.exports = Game;
