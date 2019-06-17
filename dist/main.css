@@ -1,0 +1,21 @@
+canvas {
+  width: 900px;
+  height: 600px;
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+}
+
+.instructions {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}

@@ -19,12 +19,15 @@ Bullet.color = 'red';
 Bullet.radius = 6;
 
 Bullet.prototype.collidedWith = function (otherObject) {
+  // instanceof would not work
+  
   if (otherObject.constructor.name === 'Asteroid') {
     this.cleanup = true;
     otherObject.cleanup = true;
   }
 };
 
+// use a combo of ship's velocity and key pressed to set velocity
 Bullet.setVelocity = function (vel, dir) {
   let [x, y] = vel;
   const [dx, dy] = dir;
@@ -40,6 +43,7 @@ Bullet.setVelocity = function (vel, dir) {
   return [x, y].map(val => Math.floor(val * 1.5));
 };
 
+// override MovingObject's to avoid wrapping
 Bullet.prototype.move = function () {
   this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
 };

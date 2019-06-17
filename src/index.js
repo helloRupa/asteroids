@@ -1,5 +1,3 @@
-const MovingObject = require('../src/moving_object');
-const Asteroid = require('../src/asteroid');
 const Game = require('../src/game');
 const GameView = require('../src/game_view');
 
