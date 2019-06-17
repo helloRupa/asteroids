@@ -35,4 +35,8 @@ MovingObject.prototype.isCollidedWith = function (otherObject) {
   return Math.abs(x - otherX) < radSum && Math.abs(y - otherY) < radSum;
 };
 
+MovingObject.prototype.collidedWith = function (otherObject) {
+  
+};
+
 module.exports = MovingObject;

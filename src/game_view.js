@@ -7,7 +7,7 @@ GameView.prototype.start = function () {
   setInterval(() => {
     this.game.step();
     this.game.draw(this.ctx);
-  }, 20);
+  }, 100);
 };
 
 module.exports = GameView;

@@ -1,5 +1,6 @@
 const Util = require('./utils');
 const MovingObject = require('./moving_object');
+const Ship = require('./ship');
 
 function Asteroid(pos, game) {
   MovingObject.call(this, { 
@@ -15,5 +16,11 @@ Asteroid.color = 'gray';
 Asteroid.radius = 10;
 
 Util.inherits(Asteroid, MovingObject);
+
+Asteroid.prototype.collidedWith = function (otherObject) {
+  if (otherObject instanceof Ship) {
+    otherObject.relocate();
+  }
+};
 
 module.exports = Asteroid;
