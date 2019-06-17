@@ -27,4 +27,12 @@ MovingObject.prototype.move = function () {
   this.pos = this.game.wrap(this.pos);
 };
 
+MovingObject.prototype.isCollidedWith = function (otherObject) {
+  const [x, y] = this.pos;
+  const [otherX, otherY] = otherObject.pos;
+  const radSum = this.radius + otherObject.radius;
+
+  return Math.abs(x - otherX) < radSum && Math.abs(y - otherY) < radSum;
+};
+
 module.exports = MovingObject;

@@ -49,4 +49,19 @@ Game.prototype.wrap = function (pos) {
   return [x, y];
 };
 
+Game.prototype.checkCollisions = function () {
+  this.asteroids.forEach((asteroid, idx) => {
+    for (let i = idx + 1; i < this.asteroids.length; i++) {
+      if (asteroid.isCollidedWith(this.asteroids[i])) {
+        console.log('COLLISION');
+      }
+    }
+  });
+};
+
+Game.prototype.step = function () {
+  this.moveObjects();
+  this.checkCollisions();
+};
+
 module.exports = Game;
