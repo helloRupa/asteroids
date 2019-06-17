@@ -17,8 +17,8 @@ Asteroid.radius = 10;
 
 Util.inherits(Asteroid, MovingObject);
 
-Asteroid.prototype.move = function () {
-  MovingObject.prototype.move.call(this);
+Asteroid.prototype.move = function (delta) {
+  MovingObject.prototype.move.call(this, delta);
   this.pos = this.game.wrap(this.pos);
 };
 

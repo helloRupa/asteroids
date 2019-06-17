@@ -23,8 +23,8 @@ MovingObject.prototype.draw = function(ctx) {
   ctx.fill();
 };
 
-MovingObject.prototype.move = function () {
-  this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
+MovingObject.prototype.move = function (delta) {
+  this.pos = [this.pos[0] + this.vel[0] * delta, this.pos[1] + this.vel[1] * delta];
 };
 
 MovingObject.prototype.isCollidedWith = function (otherObject) {

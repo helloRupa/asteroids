@@ -11,7 +11,7 @@ function Game() {
 
 Game.DIM_X = 900;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 1;
+Game.NUM_ASTEROIDS = 15;
 
 Game.prototype.addAsteroids = function () {
   for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
@@ -30,9 +30,9 @@ Game.prototype.draw = function (ctx) {
   });
 };
 
-Game.prototype.moveObjects = function () {
+Game.prototype.moveObjects = function (delta) {
   this.allObjects().forEach((object) => {
-    object.move();
+    object.move(delta);
   });
 };
 
@@ -68,10 +68,9 @@ Game.prototype.checkCollisions = function () {
   this.remove();
 };
 
-Game.prototype.remove = function (/*asteroid*/) {
+Game.prototype.remove = function () {
   this.asteroids = this.asteroids.filter(asteroid => !asteroid.cleanup);
   this.bullets = this.bullets.filter(bullet => !bullet.cleanup);
-  // this.asteroids.splice(this.asteroids.indexOf(asteroid), 1);
 };
 
 Game.prototype.step = function () {

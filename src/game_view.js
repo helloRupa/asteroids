@@ -1,18 +1,34 @@
 function GameView(game, ctx) {
   this.game = game;
   this.ctx = ctx;
+  this.lastTime = 0;
 }
 
 GameView.prototype.start = function () {
   this.bindKeyHandlers();
-  setInterval(() => {
-    this.game.step();
+  requestAnimationFrame(() => {
+    this.animate();
+  });
+  // setInterval(() => {
+  //   this.game.step();
+  //   this.game.draw(this.ctx);
+  // }, 20);
+};
+
+GameView.prototype.animate = function () {
+  requestAnimationFrame((ts) => {
+    let delta = ts - this.lastTime;
+    this.game.moveObjects(delta /  20);
+    this.game.checkCollisions();
     this.game.draw(this.ctx);
-  }, 20);
+    this.lastTime = ts;
+    this.animate(ts);
+  });
 };
 
 GameView.prototype.bindKeyHandlers = function () {
-  let dir = [0, 0];
+  // set default direction for bullet so it moves no matter what
+  let dir = [0, 1];
 
   //WASD and Arrow keys for movement
   document.onkeydown = (e) => {

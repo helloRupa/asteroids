@@ -40,8 +40,8 @@ Ship.prototype.power = function (impulse) {
   this.vel = [x, y];
 };
 
-Ship.prototype.move = function () {
-  MovingObject.prototype.move.call(this);
+Ship.prototype.move = function (delta) {
+  MovingObject.prototype.move.call(this, delta);
   this.pos = this.game.wrap(this.pos);
 };
 
