@@ -9,7 +9,7 @@ function Game() {
 
 Game.DIM_X = 900;
 Game.DIM_Y = 600;
-Game.NUM_ASTEROIDS = 20;
+Game.NUM_ASTEROIDS = 1;
 
 Game.prototype.addAsteroids = function () {
   for (let i = 0; i < Game.NUM_ASTEROIDS; i++) {
